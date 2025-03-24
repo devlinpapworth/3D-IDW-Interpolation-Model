@@ -27,8 +27,8 @@ int main(void)
 
 	double power = user.get_power();
 			
-	int grid_x, grid_y;
-	user.grid_check(grid_x, grid_y);
+	int grid_x, grid_y, grid_z;
+	user.grid_check(grid_x, grid_y, grid_z);
 
 
 	int num_DH = user.get_num_DH(grid_x, grid_y);

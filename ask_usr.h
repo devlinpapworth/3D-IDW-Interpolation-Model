@@ -10,11 +10,11 @@ using namespace std;
 class ask_usr
 {
 public:
-	int grid_check(int& grid_x, int& grid_y);
+	int grid_check(int& grid_x, int& grid_y, int& grid_z);
 	double get_power();
 	int get_num_DH(int x, int y);
 private:
-	int grid_size(int& grid_x, int& grid_y);
+	int grid_size(int& grid_x, int& grid_y, int& grid_z);
 };
 
 

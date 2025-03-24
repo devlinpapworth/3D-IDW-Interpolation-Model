@@ -62,14 +62,14 @@ int ask_usr::get_num_DH(int x, int y)
 }
 
 
-int ask_usr::grid_check(int& grid_x, int& grid_y)
+int ask_usr::grid_check(int& grid_x, int& grid_y, int& grid_z)
 {
 	/*Confirms that the user is happy with grid size*/
 	do
 	{
-		grid_size(grid_x, grid_y);
+		grid_size(grid_x, grid_y, grid_z);
 		char Y_N;
-		cout << "Your grid dimensions are " << grid_x << "x by " << grid_y << "y" << endl;
+		cout << "Your grid dimensions are " << grid_x << "x by " << grid_y << "y by " << grid_z << "z" << endl;
 
 		cout << "Is this correct (y/n)?: " << endl;
 		cin >> Y_N;
@@ -89,7 +89,7 @@ int ask_usr::grid_check(int& grid_x, int& grid_y)
 
 
 
-int ask_usr::grid_size(int& grid_x, int& grid_y) // taking in where the memory of grid x,y is stored and editing it in the member function
+int ask_usr::grid_size(int& grid_x, int& grid_y, int& grid_z) // taking in where the memory of grid x,y is stored and editing it in the member function
 {
 
 	/*Promts the user to enter the grid size and checks the input*/
@@ -129,6 +129,24 @@ int ask_usr::grid_size(int& grid_x, int& grid_y) // taking in where the memory o
 	} while (true);
 
 	grid_y = stoi(temp_y);
+
+	string temp_z;
+	do
+	{
+		cout << "Z value: " << endl;
+		cin >> temp_z;
+
+		if (valid_int(temp_z) && stoi(temp_z) > 0)// if number is valid then break
+		{
+			break;
+		}
+		cout << "Oops, looks like that entry didn't work. Try again: ";
+
+
+	} while (true);
+
+	grid_z = stoi(temp_z);
+
 
 
 	return(0);
