@@ -2,16 +2,45 @@
 #include "data_handle.h"
 
 
-double** data_handle::Create_DH_array(int num_DH, int x, int y)
+double*** data_handle::Create_DH_array(int num_DH, int x, int y, int z)
 {
-	/*Creates a 2D array of drill holes. The user can choose to use example data, import data from an excel file, or manually enter data.*/
+	/*Creates a 3D array of drill holes. The user can choose to use example data, import data from an excel file, or manually enter data.*/
+
+	/* 
+		{	
+							  x  y  z  val
+		2D array for one DH{{32,42, 0,0.29}, {32,42, 1,0.29},{32,42, 3, 0.12},{32,42, 5, 0.56},{..,..,..}}
+		2D array for two DH{{32,42, 0,0.29}, {32,42, 1,0.29},{32,42, 3, 0.12},{32,42, 5, 0.56},{..,..,..}}
+		2D array for three DH{{32,42, 0,0.29}, {32,42, 1,0.29},{32,42, 3, 0.12},{32,42, 5, 0.56},{..,..,..}}
+
+		}
+	 
+
+	 so i = drill hole number
+	    j = z dimension interval
+		k = values for one interval
+	*/
 
 
-	double** DH_array = new double* [num_DH]; // creates empty 2D pointer to pointer drill hole array
-	for (int i = 0; i < num_DH; i++) 
+
+
+	double*** DH_array = new double** [num_DH]; // creates empty 3D pointer to pointer drill hole array
+
+	for (int i = 0; i < num_DH; i++) // i = drill hole number
 	{
-		DH_array[i] = new double[3] {0.0, 0.0, 0.0};
+		DH_array[i] = new double* [x];
+
+		for (int j = 0; j < x; j++) // j = z dimension interval
+		{
+			DH_array[i][j] = new double[4];
+
+			for (int k = 0; k < y; k++) // k = values for one interval 
+			{
+				DH_array[i][j][k] = 0.0; // Initialize the array elements
+			}
+		}
 	}
+
 
 	char type;
 	do 
@@ -55,7 +84,7 @@ double** data_handle::Create_DH_array(int num_DH, int x, int y)
 }
 
 
-void data_handle::use_example_data(double** DH_array, int num_DH, int x, int y) 
+void data_handle::use_example_data(double*** DH_array, int num_DH, int x, int y) 
 {
 	/*Generates random drill holes for testing purposes.*/
 
@@ -80,7 +109,7 @@ void data_handle::use_example_data(double** DH_array, int num_DH, int x, int y)
 
 
 
-void data_handle::import_data_from_excel(double** DH_array, int num_DH)
+void data_handle::import_data_from_excel(double*** DH_array, int num_DH)
 {
 	/*Imports data from excel file. Intially checks if the file contains the correct amount of data, if so it will then read in one row at a time as as string.
 	Then in this string it takes out each elemnt that is seperated by a comma assigning it to the correct value in DH array.  */

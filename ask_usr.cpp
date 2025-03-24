@@ -89,7 +89,7 @@ int ask_usr::grid_check(int& grid_x, int& grid_y, int& grid_z)
 
 
 
-int ask_usr::grid_size(int& grid_x, int& grid_y, int& grid_z) // taking in where the memory of grid x,y is stored and editing it in the member function
+int ask_usr::grid_size(int& grid_x, int& grid_y, int& grid_z) // taking in where the memory of grid x,y,z is stored and editing it in the member function
 {
 
 	/*Promts the user to enter the grid size and checks the input*/
@@ -130,6 +130,7 @@ int ask_usr::grid_size(int& grid_x, int& grid_y, int& grid_z) // taking in where
 
 	grid_y = stoi(temp_y);
 
+
 	string temp_z;
 	do
 	{
@@ -146,7 +147,6 @@ int ask_usr::grid_size(int& grid_x, int& grid_y, int& grid_z) // taking in where
 	} while (true);
 
 	grid_z = stoi(temp_z);
-
 
 
 	return(0);
